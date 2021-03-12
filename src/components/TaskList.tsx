@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import Task from './Task';
 
 import '../styles/tasklist.scss'
 
-import { FiTrash, FiCheckSquare } from 'react-icons/fi'
+import { FiCheckSquare } from 'react-icons/fi'
 
 interface Task {
   id: number;
@@ -73,30 +74,11 @@ export function TaskList() {
           </button>
         </div>
       </header>
-
       <main>
         <ul>
           {tasks.map(task => (
-            <li key={task.id}>
-              <div className={task.isComplete ? 'completed' : ''} data-testid="task" >
-                <label className="checkbox-container">
-                  <input
-                    type="checkbox"
-                    readOnly
-                    checked={task.isComplete}
-                    onChange={() => handleToggleTaskCompletion(task.id)}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                <p>{task.title}</p>
-              </div>
-
-              <button type="button" data-testid="remove-task-button" onClick={() => handleRemoveTask(task.id)}>
-                <FiTrash size={16}/>
-              </button>
-            </li>
+            <Task key={task.id} id={task.id} isComplete={task.isComplete} title={task.title} handleToggleTaskCompletion={handleToggleTaskCompletion} handleRemoveTask={handleRemoveTask} />
           ))}
-
         </ul>
       </main>
     </section>
