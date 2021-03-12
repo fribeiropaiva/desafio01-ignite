@@ -25,11 +25,6 @@ export function TaskList() {
     }
   }
 
-  function updateIds(idToRemove : number) {
-    const updatedIds = ids.filter(id => id !== idToRemove);
-    setIds(updatedIds);
-  }
-
   function createTask(taskTitle: string) {
     const newId : number = createNewId()!;
     return { id: newId, title: taskTitle, isComplete: false };
